@@ -30,4 +30,9 @@ public class LngSubKDistChars
     {
 
     }
+
+    public static String longestSubstringWithKDistChars(String str, int k)
+    {
+
+    }
 }

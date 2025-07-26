@@ -1,4 +1,4 @@
-package educative.slidingwindow;
+package SlidingWindow;
 
 public class AverageOfContigousSubarrays
 {
