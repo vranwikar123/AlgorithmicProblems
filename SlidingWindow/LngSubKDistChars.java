@@ -1,5 +1,8 @@
 package educative.slidingwindow;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Given a string, find the length of the longest substring in it with no more than K distinct characters.
  *
@@ -28,11 +31,41 @@ public class LngSubKDistChars
 {
     public static void main(String[] args)
     {
-
+        System.out.println("Length of the longest substring: "
+                + longestSubstringWithKDistChars("araaci", 2));
+        System.out.println("Length of the longest substring: "
+                + longestSubstringWithKDistChars("araaci", 1));
+        System.out.println("Length of the longest substring: "
+                + longestSubstringWithKDistChars("cbbebi", 3));
     }
 
-    public static String longestSubstringWithKDistChars(String str, int k)
+    public static int longestSubstringWithKDistChars(String str, int k)
     {
+        int windowStart = 0;
+        int maxLength = 0;
+        Map<Character, Integer> charFreqMap = new HashMap<>();
 
+        for(int windowEnd = 0; windowEnd < str.length(); windowEnd++)
+        {
+            char rChar = str.charAt(windowEnd);
+            charFreqMap.put(rChar, charFreqMap.getOrDefault(rChar, 0)+1);
+
+            while(charFreqMap.size() > k)
+            {
+                char lChar = str.charAt(windowStart);
+                charFreqMap.put(lChar, charFreqMap.get(lChar) - 1);
+
+                if(charFreqMap.get(lChar) == 0)
+                {
+                    charFreqMap.remove(lChar);
+                }
+                windowStart++;
+            }
+
+            maxLength = Math.max(maxLength, windowEnd - windowStart + 1);
+
+        }
+
+        return maxLength;
     }
 }
