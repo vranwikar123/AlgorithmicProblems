@@ -33,7 +33,8 @@ public class SumOfPathNumbers
             return sum;
         }
 
-        return findPathsRecursive(currNode.left, sum) + findPathsRecursive(currNode.right, sum);
+        int res =  findPathsRecursive(currNode.left, sum) + findPathsRecursive(currNode.right, sum);
+        return res;
 
     }
 }
